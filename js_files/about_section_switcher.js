@@ -40,27 +40,37 @@ const sections = {
             <h2 class="section-heading">Our Values</h2>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="icon-circle"></div>
+                    <div class="icon-circle">
+                        <img src="../images/our_values_icons/transparency_icon.png" alt="Integrity">
+                    </div>
                     <h3>Integrity</h3>
                     <p>We conduct our business with the highest ethical standards, ensuring transparency and honesty in all our dealings.</p>
                 </div>
                 <div class="value-card">
-                    <div class="icon-circle"></div>
+                    <div class="icon-circle">
+                        <img src="../images/our_values_icons/efficiency_icon2.jpg" alt="Excellence">
+                    </div>
                     <h3>Excellence</h3>
                     <p>We strive for excellence in every service we provide, maintaining the highest standards of quality and professionalism.</p>
                 </div>
                 <div class="value-card">
-                    <div class="icon-circle"></div>
+                    <div class="icon-circle">
+                        <img src="../images/our_values_icons/teamwork_icon.png" alt="Teamwork">
+                    </div>
                     <h3>Teamwork</h3>
                     <p>We believe in the power of collaboration, working together to achieve common goals and deliver exceptional results.</p>
                 </div>
                 <div class="value-card innovation">
-                    <div class="icon-circle"></div>
+                    <div class="icon-circle">
+                        <img src="../images/our_values_icons/innovation_icon.png" alt="Innovation">
+                    </div>
                     <h3>Innovation</h3>
                     <p>We continuously seek innovative solutions to improve our services and meet evolving industry demands.</p>
                 </div>
                 <div class="value-card reliability">
-                    <div class="icon-circle"></div>
+                    <div class="icon-circle">
+                        <img src="../images/our_values_icons/reliability_icon.png" alt="Reliability">
+                    </div>
                     <h3>Reliability</h3>
                     <p>We are committed to being a dependable partner, delivering consistently reliable services to our clients.</p>
                 </div>
