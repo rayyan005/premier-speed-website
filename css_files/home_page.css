@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Navigation styles */
+nav {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    width: 100vw;
+    margin: 0;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed; /* This makes the nav bar scroll with the page */
+    z-index: 1000; /* This ensures the nav bar is on top of everything */
+}
+
+.nav-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 15px;
+    padding: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.slideshow-container {
+    width: 100vw;
+    position: relative;
+    margin-top: 0; /* Remove any margin if present */
+    padding: 0;
+    overflow: hidden;
+    padding-bottom: 30px; /* Add padding to make room for dots */
+}
+
+.slide {
+    display: none;
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 600px; /* Fixed height for all images */
+    object-fit: cover; /* This ensures images cover the entire space without distortion */
+    margin-top: 100px; /* Add space for fixed nav bar */
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.9);
+}
+
+.dot-container {
+    position: absolute;
+    bottom: 0;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.services-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 50px;
+    margin-bottom: 50px;
+}
+
+.services-cards > div {
+    background-color: #F5F5F5;
+    flex: 1;
+    min-height: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.services-cards img {
+    width: 100%;
+    height: 200px;  /* Fixed height for images */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.services-cards h3 {
+    text-align: center;
+    /* removed redundant font-family */
+    color: #333;
+    padding-top: 15px;
+}
+
+.services-cards p {
+    /* removed redundant font-family */
+    color: #666;
+    text-align: center;
+}
+
+.services-cards > div:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.services-heading {
+    text-align: center;
+    padding: 40px 0;
+    /* removed redundant font-family */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.services-section {
+    padding: 20px 0;
+}
+
+.why-us {
+    display: flex;
+    padding: 50px;
+    gap: 50px;
+    background-color: #f8f8f8;
+}
+
+.why-us-heading {
+    flex: 1;
+    padding: 20px;
+}
+
+.why-us-heading h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.why-us-heading p {
+    color: #666;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.why-us-points-cards {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+
+.why-us-points-cards > div {
+    background-color: #F5F5F5;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.why-us-points-cards > div:hover {
+    transform: translateY(-5px);
+}
+
+.why-us-points-cards h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.why-us-points-cards p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: 0px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+}
+
+.footer-section h4 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #555;
+}
+
+.footer-bottom p {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-section {
+        flex: 100%;
+        text-align: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+}
