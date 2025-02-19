@@ -88,10 +88,17 @@ function switchSection(sectionId) {
         link.classList.remove('active');
     });
     document.querySelector(`a[href="#${sectionId}"]`).classList.add('active');
+    
+    // Update URL hash without scrolling
+    history.pushState(null, '', `#${sectionId}`);
 }
 
-// Add click event listeners
+// Add click event listeners and handle initial state
 document.addEventListener('DOMContentLoaded', () => {
+    // Get section from URL hash or default to 'about'
+    const initialSection = window.location.hash.substring(1) || 'about';
+    switchSection(initialSection);
+
     document.querySelectorAll('.about-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -99,4 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
             switchSection(section);
         });
     });
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', () => {
+    const section = window.location.hash.substring(1) || 'about';
+    switchSection(section);
 });
