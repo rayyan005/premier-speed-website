@@ -52,19 +52,6 @@
     margin-bottom: 10px;
 }
 
-.map-section {
-    width: 100%;
-    padding: 50px 20px;
-}
-
-.map-container {
-    max-width: 1170px;
-    margin: 0 auto;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
 @media (max-width: 768px) {
     .contact-info-cards {
         flex-direction: column;
