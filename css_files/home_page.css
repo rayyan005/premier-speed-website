@@ -18,25 +18,36 @@ nav {
     display: flex;
     align-items: center;
     width: 100vw;
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+    box-shadow: none; /* Remove shadow */
     position: fixed;
     z-index: 1000;
+    padding: 0; /* Remove horizontal padding */
+    transition: box-shadow 0.3s ease; /* Add smooth transition for shadow */
+    height: 70px; /* Add fixed height */
+}
+
+.nav-shadow {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .nav-logo {
-    width: 100px;
-    height: 100px;
+    width: 70px; /* Reduced from 100px */
+    height: 70px; /* Reduced from 100px */
     display: block;
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
 }
 
 /* Navigation menu */
 nav ul {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end; /* Align links to the right */
     align-items: center;
-    width: 100%;
-    list-style: none;
+    width: 100%; /* Change from auto to 100% */
+    gap: 30px; /* Add consistent spacing between links */
+    margin-left: auto; /* Push links to the right */
+    padding-right: 50px; /* Add right padding for spacing */
 }
 
 nav ul li {
@@ -47,7 +58,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: black;
+    color: #2b2b2b; /* Darker text for better contrast */
 }
 
 /* Dropdown styles */
@@ -59,7 +70,7 @@ nav ul li a {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f8f8f8;
+    background-color: white;
     min-width: 200px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     border-radius: 4px;
@@ -71,7 +82,7 @@ nav ul li a {
 }
 
 .dropdown-content a {
-    color: #333;
+    color: #2b2b2b;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -80,7 +91,7 @@ nav ul li a {
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #f9f9f9;
 }
 
 .dropdown:hover .dropdown-content {
@@ -92,9 +103,10 @@ nav ul li a {
     display: flex;
     align-items: center;
     padding: 120px 50px 50px;
-    background-color: #f8f8f8;
+    background-color: white;
     gap: 50px;
     margin-top: 20px;
+    padding-top: 90px; /* Adjusted to account for smaller nav */
 }
 
 .hero-content {
@@ -103,18 +115,36 @@ nav ul li a {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
-    color: #333;
+    font-size: 2.3rem;
+    color: #2b2b2b; /* Reverted from red to original dark gray */
     margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.2;
+    font-family: 'Cutive';
+    line-height: 1.4; /* Increased line height for better readability */
+    letter-spacing: 0.5px; /* Slight letter spacing for typewriter effect */
+    opacity: 1;
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    color: #666;
+    font-size: 1.25rem;
+    color: #4a4a4a; /* Reverted from red to original medium gray */
     line-height: 1.6;
     margin-bottom: 30px;
+    letter-spacing: normal; /* Ensure normal letter spacing */
+    opacity: 0; /* Hide slogan by default */
+}
+
+.hero-content h1 span, .hero-content p span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    margin-right: 0.5px; /* Reduce space between characters */
+    white-space: pre; /* Preserve spacing */
+}
+
+.hero-content h1 span.visible, .hero-content p span.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
 }
 
 /* Slideshow styles */
@@ -139,9 +169,9 @@ nav ul li a {
 
 .dot-container {
     position: absolute;
-    bottom: 15px;
+    top: 97%; /* Change from bottom positioning */
     left: 77%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%); /* Add Y-axis transform */
     z-index: 2;
     text-align: center;
     width: auto;
@@ -203,25 +233,51 @@ nav ul li a {
 }
 
 /* Services section */
+
+.services-section {
+    background-color: rgb(57, 49, 53);
+    padding: 50px 0; /* Add padding to create space around the content */
+}
+
 .services-cards {
     display: flex;
     justify-content: center;
     gap: 30px;
     padding: 0 50px;
     margin-bottom: 50px;
+    position: relative; /* Add this for the outer lines */
+    width: 100%; /* Add explicit width */
+}
+
+/* Remove the before and after pseudo-elements */
+.services-cards:before,
+.services-cards:after {
+    display: none;
 }
 
 .services-cards > div {
-    background-color: #F5F5F5;
+    background-color: rgb(57, 49, 53);
     flex: 1;
     min-height: 300px;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgb(57, 49, 53);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative; /* Add this for the vertical line positioning */
+}
+
+/* Add vertical lines between cards */
+.services-cards > div:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -15px; /* Position in the middle of the gap */
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .services-cards img {
@@ -233,25 +289,28 @@ nav ul li a {
 
 .services-cards h3 {
     text-align: center;
-    color: #333;
+    color: #ffffff;
     padding-top: 15px;
 }
 
 .services-cards p {
-    color: #666;
+    color: #ffffff;
     text-align: center;
 }
 
 .services-cards > div:hover {
     transform: translateY(-5px);
+    background-color: rgba(81, 67, 74, 0.7); /* Match section color with transparency */
     cursor: pointer;
 }
 
 .services-heading {
+    font-family: 'Cutive';
     text-align: center;
     padding: 40px 0;
     font-size: 2.5rem;
     margin-bottom: 20px;
+    color: #ffffff;
 }
 
 /* Why Us section */
@@ -259,22 +318,22 @@ nav ul li a {
     display: flex;
     padding: 50px;
     gap: 50px;
-    background-color: #f8f8f8;
+    background-color: #f7f0e9;
 }
 
 .why-us-heading {
     flex: 1;
     padding: 20px;
+    color: rgb(85, 76, 66);
 }
 
 .why-us-heading h2 {
-    font-size: 2.5rem;
+    font-family: 'Cutive';
+    font-size: 2.28rem;
     margin-bottom: 20px;
-    color: #333;
 }
 
 .why-us-heading p {
-    color: #666;
     line-height: 1.6;
     max-width: 400px;
 }
@@ -285,33 +344,36 @@ nav ul li a {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     padding: 20px;
+    color: rgb(85, 76, 66);
 }
 
 .why-us-points-cards > div {
-    background-color: #F5F5F5;
+    background-color: transparent; /* Remove card background */
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    box-shadow: none; /* Remove shadow */
 }
 
 .why-us-points-cards > div:hover {
     transform: translateY(-5px);
+    background-color: rgba(205, 188, 171, 0.3); /* Subtle background on hover */
+    cursor: pointer;
 }
 
 .why-us-points-cards h3 {
     margin-bottom: 15px;
-    color: #333;
+    color: rgb(85, 76, 66); /* Match section text color */
 }
 
 .why-us-points-cards p {
-    color: #666;
     line-height: 1.5;
+    color: rgb(85, 76, 66); /* Match section text color */
 }
 
 /* Footer */
 footer {
-    background-color: #333;
+    background-color: rgb(57, 49, 53);
     color: #fff;
     padding: 40px 0 20px;
 }
