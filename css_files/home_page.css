@@ -103,6 +103,52 @@ nav ul li a {
 .slide {
     display: none;
     width: 100%;
+    position: relative; /* Add this for text positioning */
+}
+
+.slide-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slide-text.animated {
+    opacity: 1;
+}
+
+.slide-text span {
+    opacity: 0;
+}
+
+.slide-text.animated span {
+    animation: typewriter 0.1s forwards;
+}
+
+@keyframes typewriter {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    to {
+        left: 0;
+    }
+}
+
+/* Ensure text is visible when slide is active */
+.slide.active .slide-text {
+    display: block;
 }
 
 .slide img {
