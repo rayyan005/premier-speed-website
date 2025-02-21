@@ -106,6 +106,7 @@ nav ul li a {
     background-color: white;
     gap: 50px;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding-top: 90px; /* Adjusted to account for smaller nav */
 }
 
@@ -155,6 +156,9 @@ nav ul li a {
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     margin-top: 20px;
     position: relative;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .slide img {
@@ -167,28 +171,90 @@ nav ul li a {
     display: block;
 }
 
+/* Initial animation for first slide only */
+.slide.initial-load img {
+    transform: translateY(150px);
+    clip-path: inset(100% 0 0 0);
+    transition: transform 1.5s ease, clip-path 1.5s ease;
+}
+
+.slide.initial-load.show img {
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+}
+
+/* Regular slide transitions */
+.slide.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Add horizontal slide animation */
+@keyframes slideFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.slide.slide-right {
+    animation: slideFromRight 0.8s ease;
+}
+
+.slide.slide-left {
+    animation: slideFromLeft 0.8s ease;
+}
+
 .dot-container {
     position: absolute;
-    top: 97%; /* Change from bottom positioning */
-    left: 77%;
-    transform: translate(-50%, -50%); /* Add Y-axis transform */
-    z-index: 2;
+    bottom: 20px; /* Change from top positioning to bottom */
+    left: 76%; /* Center horizontally */
+    transform: translate(-50%, 50px); /* Initial position moved down */
+    z-index: 5; /* Increase z-index */
     text-align: center;
     width: auto;
-    padding: 5px 10px;
-    background-color: rgba(0, 0, 0, 0.3);
+    padding: 7px 10px; /* Adjusted vertical padding */
+    background-color: rgba(0, 0, 0, 0.4); /* Slightly more transparent */
     border-radius: 20px;
+    opacity: 0; /* Make visible by default */
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    transition-delay: 0.5s; /* Slight delay to match image animation */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show dots after initial load */
+.slide.initial-load.show ~ .dot-container {
+    opacity: 1;
+    transform: translate(-50%, 0); /* Move up to final position */
+}
+
+/* Keep dots visible for all subsequent slides */
+.slide.show ~ .dot-container {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* Remove the transition classes for dot-container */
+.slide.initial-load.show + .dot-container {
+    opacity: 1;
 }
 
 .dot {
     cursor: pointer;
-    height: 10px;
-    width: 10px;
+    height: 6px; /* Reduced from 10px */
+    width: 6px; /* Reduced from 10px */
     margin: 0 4px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4); /* Slightly more transparent */
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.3s ease;
+    position: relative;
+    top: 0; /* Reset any top position */
 }
 
 .active, .dot:hover {
@@ -235,8 +301,9 @@ nav ul li a {
 /* Services section */
 
 .services-section {
+    margin-top: 55px;
     background-color: rgb(57, 49, 53);
-    padding: 50px 0; /* Add padding to create space around the content */
+    padding: 65px 0; /* Add padding to create space around the content */
 }
 
 .services-cards {
@@ -247,6 +314,7 @@ nav ul li a {
     margin-bottom: 50px;
     position: relative; /* Add this for the outer lines */
     width: 100%; /* Add explicit width */
+    
 }
 
 /* Remove the before and after pseudo-elements */
@@ -262,11 +330,42 @@ nav ul li a {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 5px rgb(57, 49, 53);
-    transition: transform 0.3s ease;
+    transition: opacity 1.2s ease,
+                transform 0.2s ease, /* Faster base transform */
+                background-color 0.2s ease;
     display: flex;
     flex-direction: column;
     gap: 15px;
     position: relative; /* Add this for the vertical line positioning */
+    opacity: 0;
+    transform: translateY(50px);
+    transition-property: opacity, transform;
+    transition-duration: 1.2s;
+    transition-timing-function: ease;
+}
+
+.services-cards > div.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.2s ease,
+                transform 0.2s ease, /* Faster transform */
+                background-color 0.2s ease;
+    transition-delay: var(--entrance-delay, 0s), 0s, 0s; /* Only delay initial entrance */
+}
+
+/* Set entrance delays using CSS custom properties */
+.services-cards > div:nth-child(2) {
+    --entrance-delay: 0.3s;
+}
+
+.services-cards > div:nth-child(3) {
+    --entrance-delay: 0.6s;
+}
+
+.services-cards > div.visible:hover {
+    transform: translateY(-5px);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition-delay: 0s; /* Reset any delays on hover */
 }
 
 /* Add vertical lines between cards */
@@ -311,6 +410,14 @@ nav ul li a {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #ffffff;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.services-heading.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Why Us section */
@@ -325,6 +432,14 @@ nav ul li a {
     flex: 1;
     padding: 20px;
     color: rgb(85, 76, 66);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.why-us-heading.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .why-us-heading h2 {
@@ -351,13 +466,50 @@ nav ul li a {
     background-color: transparent; /* Remove card background */
     padding: 25px;
     border-radius: 10px;
-    transition: transform 0.3s ease;
+    transition: opacity 1.2s ease,
+                transform 0.2s ease, /* Faster base transform */
+                background-color 0.2s ease;
     box-shadow: none; /* Remove shadow */
+    opacity: 0;
+    transform: translateY(50px);
+    transition-property: opacity, transform;
+    transition-duration: 1.2s;
+    transition-timing-function: ease;
 }
 
-.why-us-points-cards > div:hover {
+.why-us-points-cards > div.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.2s ease,
+                transform 0.2s ease, /* Faster transform */
+                background-color 0.2s ease;
+    transition-delay: var(--entrance-delay, 0s), 0s, 0s; /* Only delay initial entrance */
+}
+
+/* Set entrance delays for cards */
+.why-us-points-cards > div:nth-child(1) {
+    --entrance-delay: 0.3s;
+}
+
+.why-us-points-cards > div:nth-child(2) {
+    --entrance-delay: 0.6s;
+}
+
+.why-us-points-cards > div:nth-child(3) {
+    --entrance-delay: 0.9s;
+}
+
+.why-us-points-cards > div:nth-child(4) {
+    --entrance-delay: 1.2s;
+}
+
+.why-us-points-cards > div.visible:hover {
     transform: translateY(-5px);
-    background-color: rgba(205, 188, 171, 0.3); /* Subtle background on hover */
+    background-color: rgba(122, 99, 76, 0.3);
+    /* rgba(205, 188, 171, 0.3); */
+    transition: transform 0.2s ease, 
+                background-color 0.2s ease;
+    transition-delay: 0s;
     cursor: pointer;
 }
 

@@ -1,4 +1,4 @@
-function typeWriter(text, elementType) {
+function typeWriter(text, elementType, speed = 50) { // Add speed parameter with default
     const element = document.querySelector(`.hero-content ${elementType}`);
     element.innerHTML = '';
     element.style.opacity = '1';
@@ -13,11 +13,10 @@ function typeWriter(text, elementType) {
         
         setTimeout(() => {
             span.classList.add('visible');
-        }, index * 50);
+        }, index * speed); // Use speed parameter instead of fixed value
     });
 }
 
-// Replace loadingComplete event listener with DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     const titleElement = document.querySelector('.hero-content h1');
     const sloganElement = document.querySelector('.hero-content p');
@@ -25,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleText = titleElement.textContent;
     const sloganText = sloganElement.textContent;
     
-    // Start animations
-    typeWriter(titleText, 'h1');
+    // Start animations with different speeds
+    typeWriter(titleText, 'h1'); // Title keeps original 50ms delay
     setTimeout(() => {
-        typeWriter(sloganText, 'p');
-    }, titleText.length * 50 + 500); // Added extra delay between title and slogan
+        typeWriter(sloganText, 'p', 20); // Slogan types faster with 30ms delay
+    }, titleText.length * 50 + 500);
 });
