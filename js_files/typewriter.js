@@ -1,8 +1,7 @@
-function typeWriter(element, text, showElement = false) {
+function typeWriter(text, elementType) {
+    const element = document.querySelector(`.hero-content ${elementType}`);
     element.innerHTML = '';
-    if (showElement) {
-        element.style.opacity = '1'; // Show element when animation starts
-    }
+    element.style.opacity = '1';
     
     text.split('').forEach((char, index) => {
         const span = document.createElement('span');
@@ -18,15 +17,16 @@ function typeWriter(element, text, showElement = false) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const title = document.querySelector('.hero-content h1');
-    const subtitle = document.querySelector('.hero-content p');
+document.addEventListener('loadingComplete', () => {
+    const titleElement = document.querySelector('.hero-content h1');
+    const sloganElement = document.querySelector('.hero-content p');
     
-    if (title && subtitle) {
-        typeWriter(title, 'Premier Speed Logistics Services LLC.');
-        
-        setTimeout(() => {
-            typeWriter(subtitle, 'Welcome to Premier Speed Logistics, where efficiency meets reliability. Our specialized services ensure the seamless transport of goods and containers, redefining the logistics experience.', true); // Pass true to show element
-        }, 2000);
-    }
+    const titleText = titleElement.textContent;
+    const sloganText = sloganElement.textContent;
+    
+    // Start animations
+    typeWriter(titleText, 'h1');
+    setTimeout(() => {
+        typeWriter(sloganText, 'p');
+    }, titleText.length * 50 + 500); // Added extra delay between title and slogan
 });
