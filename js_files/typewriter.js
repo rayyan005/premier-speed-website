@@ -17,7 +17,8 @@ function typeWriter(text, elementType) {
     });
 }
 
-document.addEventListener('loadingComplete', () => {
+// Replace loadingComplete event listener with DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
     const titleElement = document.querySelector('.hero-content h1');
     const sloganElement = document.querySelector('.hero-content p');
     
